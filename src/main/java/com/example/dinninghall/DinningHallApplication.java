@@ -11,17 +11,16 @@ public class DinningHallApplication {
 
     public static void main(String[] args) throws URISyntaxException {
         SpringApplication.run(DinningHallApplication.class, args);
-//        Table table = new Table();
-//        OrderService orderService = new OrderService();
-//        for (int i = 0; i < 7; i++) {
-//            orderService.postOrder(table.generateOrders());
-//        }
+        
+        // final Thread waiter1 = new Thread(new Waiter("waiter1"));
+        // final Thread waiter2 = new Thread(new Waiter("waiter2"));
+        
+        // waiter1.start();
+        // waiter2.start();
 
-//        Waiter waiter1 = new Waiter("waiter1");
-        final Thread waiter1 = new Thread(new Waiter("waiter1"));
-        final Thread waiter2 = new Thread(new Waiter("waiter2"));
-        waiter1.start();
-        waiter2.start();
+        for (int i = 0; i < 5; i++) {
+            new Thread(new Waiter("waiter"+i)).start();;
+        }
     }
 
 }

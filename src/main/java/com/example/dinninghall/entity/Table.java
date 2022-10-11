@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 public class Table {
     Random random = new Random();
-    private final Queue<Order> preparedFoodQueue = new LinkedList<>();
 
     public Order generateOrders(){
         String id = UUID.randomUUID().toString();
