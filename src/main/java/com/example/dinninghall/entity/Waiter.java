@@ -1,34 +1,27 @@
 package com.example.dinninghall.entity;
 
 import com.example.dinninghall.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.URISyntaxException;
 
 public class Waiter implements Runnable {
     String name;
     Table table = new Table();
-    OrderService orderService = new OrderService();
+
+    @Autowired
+    OrderService orderService;
 
     public Waiter(String name){
         this.name = name;
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         System.out.println("Started thread " + name);
-            // try {
-            //     orderService.postOrder(table.generateOrders());
-            // } catch (URISyntaxException e) {
-            //     e.printStackTrace();
-            // }
-            // try {
-            //     Thread.sleep(2000);
-            // } catch (InterruptedException e) {
-            //     e.printStackTrace();
-            // }
             while(true){
                 try {
-                    orderService.postOrder(table.generateOrders());
+                    OrderService.postOrder(table.generateOrders());
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
